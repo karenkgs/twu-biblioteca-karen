@@ -13,9 +13,9 @@ public class MainMenuTest {
 
     @Test
     public void testMainMenuOptionValue() {
-        List<MainMenuOption> options = new ArrayList<>(Arrays.asList(MainMenuOption.LIST,
+        final List<MainMenuOption> options = new ArrayList<>(Arrays.asList(MainMenuOption.LIST,
                                                         MainMenuOption.CHECKOUT));
-        MainMenu mainMenu = new MainMenu(options);
+        final MainMenu mainMenu = new MainMenu(options);
 
         assertThat(mainMenu.getOptionValue(1), equalTo("1 - List Books"));
         assertThat(mainMenu.getOptionValue(2), equalTo("2 - Checkout Book"));

@@ -10,7 +10,7 @@ public class BookListTest {
 
     @Test
     public void testPrintedBookList() {
-        BookList bookList = new BookList(BookFactory.books());
+        final BookList bookList = new BookList(BookFactory.books());
 
         assertThat(bookList.titleList().get(0), equalTo("TDD By Example"));
     }

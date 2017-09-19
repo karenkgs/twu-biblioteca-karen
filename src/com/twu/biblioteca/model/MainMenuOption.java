@@ -5,8 +5,8 @@ public enum MainMenuOption {
     LIST(1, "List Books"),
     CHECKOUT(2, "Checkout Book");
 
-    private int key;
-    private String value;
+    final private int key;
+    final private String value;
 
     MainMenuOption(int key, String value) {
         this.key = key;

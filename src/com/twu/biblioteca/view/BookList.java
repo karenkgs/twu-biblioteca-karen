@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookList {
-    private List<Book> bookList;
+    final private List<Book> bookList;
 
-    public BookList(List<Book> bookList){
+    public BookList(final List<Book> bookList){
         this.bookList = bookList;
     }
 

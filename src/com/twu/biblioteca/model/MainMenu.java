@@ -4,17 +4,17 @@ import java.util.List;
 
 public class MainMenu {
 
-    private List<MainMenuOption> options;
+    final private List<MainMenuOption> options;
 
-    public MainMenu(List<MainMenuOption> options){
+    public MainMenu(final List<MainMenuOption> options){
         this.options = options;
     }
 
-    public MainMenuOption getOption(int i) {
+    public MainMenuOption getOption(final int i) {
         return options.get(i-1);
     }
 
-    public String getOptionValue(int i) {
+    public String getOptionValue(final int i) {
         return this.getOption(i).getValue();
     }
 
