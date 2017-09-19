@@ -2,8 +2,9 @@ package com.twu.biblioteca.view;
 
 import com.twu.biblioteca.model.Book;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.stream.Collectors.toList;
 
 public class BookList {
     final private List<Book> bookList;
@@ -13,12 +14,8 @@ public class BookList {
     }
 
     public List<String> titleList() {
-        List<String> titleList = new ArrayList<>();
 
-        for(Book book: bookList){
-            titleList.add(book.getTitle());
-        }
+        return bookList.stream().map(Book::getTitle).collect(toList());
 
-        return titleList;
     }
 }
