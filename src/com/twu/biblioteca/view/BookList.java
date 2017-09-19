@@ -2,6 +2,7 @@ package com.twu.biblioteca.view;
 
 import com.twu.biblioteca.model.Book;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -14,8 +15,17 @@ public class BookList {
     }
 
     public List<String> titleList() {
-
         return bookList.stream().map(Book::getTitle).collect(toList());
+    }
 
+    public List<String> titlePlusIsAvailableList() {
+
+        List<String> titlePlusIsAvailableList = new ArrayList<>();
+        for(Book book: bookList){
+            String formattedTitlePlusIsAvailable = String.format("%s - %s", book.getTitle(), book.isAvailableToString());
+            titlePlusIsAvailableList.add(formattedTitlePlusIsAvailable);
+        }
+
+        return titlePlusIsAvailableList;
     }
 }

@@ -2,7 +2,6 @@ package com.twu.biblioteca.factory;
 
 import com.twu.biblioteca.model.Book;
 import org.junit.Test;
-
 import java.util.List;
 
 import static org.hamcrest.core.IsEqual.equalTo;

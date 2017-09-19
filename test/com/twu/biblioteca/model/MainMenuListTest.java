@@ -1,5 +1,6 @@
 package com.twu.biblioteca.model;
 
+import com.twu.biblioteca.view.MainMenuList;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -9,16 +10,16 @@ import java.util.List;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
-public class MainMenuTest {
+public class MainMenuListTest {
 
     @Test
     public void testMainMenuOptionValue() {
         final List<MainMenuOption> options = new ArrayList<>(Arrays.asList(MainMenuOption.LIST,
                                                         MainMenuOption.CHECKOUT));
-        final MainMenu mainMenu = new MainMenu(options);
+        final MainMenuList mainMenuList = new MainMenuList(options);
 
-        assertThat(mainMenu.getOptionValue(1), equalTo("1 - List Books"));
-        assertThat(mainMenu.getOptionValue(2), equalTo("2 - Checkout Book"));
+        assertThat(mainMenuList.getOptionValue(1), equalTo("1 - List Books"));
+        assertThat(mainMenuList.getOptionValue(2), equalTo("2 - Checkout Book"));
     }
 
 }

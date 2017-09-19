@@ -1,12 +1,14 @@
-package com.twu.biblioteca.model;
+package com.twu.biblioteca.view;
+
+import com.twu.biblioteca.model.MainMenuOption;
 
 import java.util.List;
 
-public class MainMenu {
+public class MainMenuList {
 
     final private List<MainMenuOption> options;
 
-    public MainMenu(final List<MainMenuOption> options){
+    public MainMenuList(final List<MainMenuOption> options){
         this.options = options;
     }
 

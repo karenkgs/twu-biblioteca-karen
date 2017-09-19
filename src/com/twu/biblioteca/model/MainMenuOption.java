@@ -20,4 +20,9 @@ public enum MainMenuOption {
     public String getValue() {
         return String.format("%d - %s", getKey(), value);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(key);
+    }
 }

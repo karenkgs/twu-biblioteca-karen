@@ -9,10 +9,11 @@ import static org.junit.Assert.assertThat;
 public class BookListTest {
 
     @Test
-    public void testPrintedBookList() {
+    public void testBookList() {
         final BookList bookList = new BookList(BookFactory.books());
 
         assertThat(bookList.titleList().get(0), equalTo("TDD By Example"));
+        assertThat(bookList.titlePlusIsAvailableList().get(0), equalTo("TDD By Example - Not Borrowed"));
     }
 
 }

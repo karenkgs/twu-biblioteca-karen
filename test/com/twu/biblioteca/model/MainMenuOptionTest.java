@@ -15,5 +15,4 @@ public class MainMenuOptionTest {
         assertThat(mainMenuOption.getKey(), equalTo(1));
         assertThat(mainMenuOption.getValue(), equalTo("1 - List Books"));
     }
-
 }

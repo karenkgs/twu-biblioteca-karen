@@ -9,7 +9,8 @@ import java.util.List;
 public class BookFactory {
 
     public static List<Book> books() {
-        final List<Book> books = new ArrayList<>(Arrays.asList(new Book("TDD By Example")));
+        final List<Book> books = new ArrayList<>(Arrays.asList(new Book("TDD By Example", true),
+                                                               new Book("Head First Java", true)));
 
         return books;
     }
