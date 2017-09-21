@@ -5,13 +5,18 @@ import com.twu.biblioteca.model.Book;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class BookRepository {
 
-    final List<Book> bookList;
+    public static List<Book> bookList;
+
+    public BookRepository(List<Book> bookList){
+        this.bookList = bookList;
+    }
 
     public BookRepository(){
-        this.bookList = booksFromFactory();
+        this(BookFactory.books());//REVIEW
     }
 
     public Book searchBookByTitle(final String title) {
@@ -22,11 +27,15 @@ public class BookRepository {
         return bookWithTitle.orElse(null);
     }
 
-    public List<Book> getBookList() {
-        return bookList;
-    }
-
     private List<Book> booksFromFactory() {
         return BookFactory.books();
+    }
+
+    public Book searchBookByUUID(final UUID id) {
+        final Optional<Book> bookWithID = bookList.stream()
+                                                     .filter(book -> book.getId().equals(id))
+                                                     .findAny();
+
+        return bookWithID.orElse(null);
     }
 }

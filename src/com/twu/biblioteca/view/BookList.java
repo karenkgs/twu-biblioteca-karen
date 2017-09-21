@@ -22,10 +22,14 @@ public class BookList {
 
         List<String> titlePlusIsAvailableList = new ArrayList<>();
         for(Book book: bookList){
-            String formattedTitlePlusIsAvailable = String.format("%s - %s", book.getTitle(), book.isAvailableToString());
+            String formattedTitlePlusIsAvailable = String.format("%s - %s", book.getTitle(), isAvailableToString(book));
             titlePlusIsAvailableList.add(formattedTitlePlusIsAvailable);
         }
 
         return titlePlusIsAvailableList;
+    }
+
+    private String isAvailableToString(Book book){
+        return (book.isAvailable() ? "Not Borrowed" : "Borrowed");
     }
 }

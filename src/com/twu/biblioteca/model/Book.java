@@ -24,11 +24,6 @@ public class Book {
         return id;
     }
 
-    //colocar na view
-    public String isAvailableToString(){
-        return (isAvailable() ? "Not Borrowed" : "Borrowed");
-    }
-
     public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
