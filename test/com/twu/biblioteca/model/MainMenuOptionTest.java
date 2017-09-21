@@ -10,7 +10,7 @@ public class MainMenuOptionTest {
     @Test
     public void testOptionValue() {
 
-        final MainMenuOption mainMenuOption = MainMenuOption.LIST;
+        final MainMenuOption mainMenuOption = MainMenuOption.LIST_BOOKS;
 
         assertThat(mainMenuOption.getKey(), equalTo(1));
         assertThat(mainMenuOption.getValue(), equalTo("1 - List Books"));

@@ -9,7 +9,7 @@ public class BookTest {
 
     @Test
     public void testIsAvailable(){
-        Book book = new Book("", false);
+        final Book book = new Book("", false);
         assertThat(book.isAvailable(), equalTo(false));
     }
 

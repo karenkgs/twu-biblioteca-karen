@@ -12,7 +12,7 @@ public class BookRepositoryTest {
 
     @Test
     public void testBookPersistency(){
-        List<Book> books = BookRepository.bookList;
+        final List<Book> books = BookRepository.bookList;
 
         assertThat(books.get(0).getTitle(), equalTo("TDD By Example"));
     }

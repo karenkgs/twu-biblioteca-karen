@@ -2,8 +2,11 @@ package com.twu.biblioteca.model;
 
 public enum MainMenuOption {
 
-    LIST(1, "List Books"),
-    CHECKOUT(2, "Checkout Book");
+    QUIT_MENU(0, "Quit Menu"),
+    LIST_BOOKS(1, "List Books"),
+    CHECKOUT_BOOK(2, "Checkout Book"),
+    RETURN_BOOK(3, "Return Book"),
+    BOOK_DETAILS(4, "Book Details");
 
     final private int key;
     final private String value;
@@ -25,4 +28,5 @@ public enum MainMenuOption {
     public String toString() {
         return String.valueOf(key);
     }
+
 }

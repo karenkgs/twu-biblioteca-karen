@@ -14,12 +14,21 @@ public class MainMenuListTest {
 
     @Test
     public void testMainMenuOptionValue() {
-        final List<MainMenuOption> options = new ArrayList<>(Arrays.asList(MainMenuOption.LIST,
-                                                        MainMenuOption.CHECKOUT));
+        final List<MainMenuOption> options = new ArrayList<>(Arrays.asList(MainMenuOption.LIST_BOOKS,
+                                                        MainMenuOption.CHECKOUT_BOOK));
         final MainMenuList mainMenuList = new MainMenuList(options);
 
         assertThat(mainMenuList.getOptionValue(1), equalTo("1 - List Books"));
         assertThat(mainMenuList.getOptionValue(2), equalTo("2 - Checkout Book"));
+    }
+
+    @Test
+    public void testMenuOptionForKey(){
+        final List<MainMenuOption> options = new ArrayList<>(Arrays.asList(MainMenuOption.LIST_BOOKS,
+                MainMenuOption.CHECKOUT_BOOK));
+        final MainMenuList mainMenuList = new MainMenuList(options);
+
+        assertThat(mainMenuList.getOptionForKey(1), equalTo(MainMenuOption.LIST_BOOKS));
     }
 
 }

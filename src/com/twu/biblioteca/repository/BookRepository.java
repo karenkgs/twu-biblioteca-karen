@@ -16,7 +16,7 @@ public class BookRepository {
     }
 
     public BookRepository(){
-        this(BookFactory.books());//REVIEW
+        this(BookFactory.books());
     }
 
     public Book searchBookByTitle(final String title) {
@@ -33,8 +33,8 @@ public class BookRepository {
 
     public Book searchBookByUUID(final UUID id) {
         final Optional<Book> bookWithID = bookList.stream()
-                                                     .filter(book -> book.getId().equals(id))
-                                                     .findAny();
+                                                   .filter(book -> book.getId().equals(id))
+                                                   .findAny();
 
         return bookWithID.orElse(null);
     }

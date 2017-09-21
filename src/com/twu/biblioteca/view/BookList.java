@@ -21,15 +21,16 @@ public class BookList {
     public List<String> titlePlusIsAvailableList() {
 
         List<String> titlePlusIsAvailableList = new ArrayList<>();
-        for(Book book: bookList){
-            String formattedTitlePlusIsAvailable = String.format("%s - %s", book.getTitle(), isAvailableToString(book));
+
+        for(final Book book: bookList){
+            final String formattedTitlePlusIsAvailable = String.format("%s - %s", book.getTitle(), isAvailableToString(book));
             titlePlusIsAvailableList.add(formattedTitlePlusIsAvailable);
         }
 
         return titlePlusIsAvailableList;
     }
 
-    private String isAvailableToString(Book book){
+    private String isAvailableToString(final Book book){
         return (book.isAvailable() ? "Not Borrowed" : "Borrowed");
     }
 }

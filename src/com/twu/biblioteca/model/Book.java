@@ -2,7 +2,7 @@ package com.twu.biblioteca.model;
 import java.util.UUID;
 
 public class Book {
-    private UUID id;
+    private final UUID id;
     private boolean isAvailable;
     private final String title;
 
