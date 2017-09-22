@@ -4,6 +4,8 @@ import com.twu.biblioteca.model.Book;
 import org.junit.Test;
 
 
+import java.time.Year;
+
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -13,7 +15,7 @@ public class BookCheckoutTest {
     public void testBookCheckout(){
 
         final BookCheckout bookCheckout = new BookCheckout();
-        final Book bookToCheckout = new Book("My Book", true);
+        final Book bookToCheckout = new Book("My Book", true, "Me", Year.now());
 
         Book checkedOutBook = bookCheckout.checkoutBook(bookToCheckout);
         assertThat(checkedOutBook.isAvailable(), equalTo(false));

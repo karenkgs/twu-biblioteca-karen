@@ -3,6 +3,8 @@ package com.twu.biblioteca.controller;
 import com.twu.biblioteca.model.Book;
 import org.junit.Test;
 
+import java.time.Year;
+
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
@@ -12,7 +14,7 @@ public class BookReturnTest {
     public void testBookReturn(){
 
         final BookReturn bookReturn = new BookReturn();
-        final Book bookToReturn = new Book("My Book", false);
+        final Book bookToReturn = new Book("My Book", false, "Me", Year.now());
 
         Book returnedBook = bookReturn.returnBook(bookToReturn);
         assertThat(returnedBook.isAvailable(), equalTo(true));

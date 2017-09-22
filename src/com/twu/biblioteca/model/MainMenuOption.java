@@ -1,5 +1,10 @@
 package com.twu.biblioteca.model;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 public enum MainMenuOption {
 
     QUIT_MENU(0, "Quit Menu"),
@@ -22,6 +27,22 @@ public enum MainMenuOption {
 
     public String getValue() {
         return String.format("%d - %s", getKey(), value);
+    }
+
+    private String getValue(MainMenuOption mainMenuOption){
+        return mainMenuOption.getValue();
+    }
+
+    public static List<String> valuesList(){
+        return Arrays.stream(values()).map(option -> option.getValue(option)).collect(Collectors.toList());
+    }
+
+    public static MainMenuOption getOptionForKey(final int key) {
+        final Optional<MainMenuOption> optionForKey = Arrays.stream(values())
+                                                            .filter(option -> option.getKey() == key)
+                                                            .findAny();
+
+        return optionForKey.orElse(null);
     }
 
     @Override

@@ -2,8 +2,9 @@ package com.twu.biblioteca.view;
 
 import com.twu.biblioteca.model.MainMenuOption;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public class MainMenuList {
 
@@ -13,21 +14,12 @@ public class MainMenuList {
         this.options = options;
     }
 
-    public MainMenuOption getOption(final int i) {
-        return options.get(i-1);
+    public List<String> menuStringList() {
+        List<String> menuStringList = new ArrayList<>();
+//        for(MainMenuOption mainMenuOption: Arrays.stream(MainMenuOption.values()).map(ge)){
+//            menuStringList.add(mainMenuOption.getValue());
+//        }
+
+        return menuStringList;
     }
-
-    public String getOptionValue(final int i) {
-        return this.getOption(i).getValue();
-    }
-
-    public MainMenuOption getOptionForKey(final int key) {
-        final Optional<MainMenuOption> optionForKey = options.stream()
-                                                             .filter(option -> option.getKey() == key)
-                                                             .findAny();
-
-        return optionForKey.orElse(null);
-    }
-    //Deixar aqui ou no enum?
-
 }
