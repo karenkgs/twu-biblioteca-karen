@@ -1,5 +1,6 @@
 package com.twu.biblioteca.view;
 
+import com.twu.biblioteca.constants.StringConstants;
 import com.twu.biblioteca.factory.BookFactory;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ public class BookListTest {
         final BookList bookList = new BookList(BookFactory.books());
 
         assertThat(bookList.titleList().get(0), equalTo("TDD By Example"));
-        assertThat(bookList.titlePlusIsAvailableList().get(0), equalTo("TDD By Example - Not Borrowed"));
+        assertThat(bookList.titlePlusIsAvailableList().get(0), equalTo(String.format("TDD By Example - %s", StringConstants.PRODUCT_IS_AVAILABLE)));
     }
 
 }

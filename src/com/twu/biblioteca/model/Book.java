@@ -1,4 +1,6 @@
 package com.twu.biblioteca.model;
+import com.twu.biblioteca.constants.StringConstants;
+
 import java.time.Year;
 import java.util.UUID;
 
@@ -51,7 +53,7 @@ public class Book {
                              getTitle(),
                              getAuthor(),
                              getYearPublished(),
-                             isAvailable() ? "Not Borrowed" : "Borrowed"
+                             isAvailable() ? StringConstants.PRODUCT_IS_AVAILABLE : StringConstants.PRODUCT_IS_NOT_AVAILABLE
         );
     }
 }

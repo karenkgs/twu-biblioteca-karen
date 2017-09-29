@@ -1,5 +1,6 @@
 package com.twu.biblioteca.view;
 
+import com.twu.biblioteca.constants.StringConstants;
 import com.twu.biblioteca.model.Movie;
 
 import java.util.ArrayList;
@@ -31,6 +32,6 @@ public class MovieList {
     }
 
     private String isAvailableToString(final Movie movie){
-        return (movie.isAvailable() ? "Not Borrowed" : "Borrowed");
+        return (movie.isAvailable() ? StringConstants.PRODUCT_IS_AVAILABLE : StringConstants.PRODUCT_IS_NOT_AVAILABLE);
     }
 }
