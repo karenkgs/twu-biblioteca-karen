@@ -3,24 +3,15 @@ package com.twu.biblioteca.controller;
 
 import com.twu.biblioteca.model.MainMenuOption;
 import com.twu.biblioteca.repository.BookRepository;
+import com.twu.biblioteca.repository.MovieRepository;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
 
 public class MainMenuControllerTest {
 
-    private final List<MainMenuOption> mainMenuList = new ArrayList<>(Arrays.asList(MainMenuOption.QUIT_MENU,
-                                                                             MainMenuOption.LIST_BOOKS,
-                                                                             MainMenuOption.CHECKOUT_BOOK,
-                                                                             MainMenuOption.RETURN_BOOK,
-                                                                             MainMenuOption.BOOK_DETAILS));
-
-    private final MainMenuController mainMenuController = new MainMenuController(mainMenuList, new BookRepository());
+    private final MainMenuController mainMenuController = new MainMenuController(new BookRepository(), new MovieRepository());
 
     private boolean isActionExecuted = false;
 
