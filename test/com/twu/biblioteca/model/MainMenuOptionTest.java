@@ -1,11 +1,6 @@
 package com.twu.biblioteca.model;
 
-import com.twu.biblioteca.view.MainMenuList;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;

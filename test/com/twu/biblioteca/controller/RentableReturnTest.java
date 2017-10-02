@@ -6,6 +6,7 @@ import com.twu.biblioteca.model.Rentable;
 import org.junit.Test;
 
 import java.time.Year;
+import java.util.UUID;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertNull;

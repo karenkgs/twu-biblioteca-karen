@@ -1,6 +1,7 @@
 package com.twu.biblioteca.repository;
 
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.Rentable;
 import org.junit.Test;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class BookRepositoryTest {
 
     @Test
     public void testBookPersistency(){
-        final List<Book> books = BookRepository.bookList;
+        final List<Rentable> books = BookRepository.bookList;
 
         assertThat(books.get(0).getTitle(), equalTo("TDD By Example"));
     }

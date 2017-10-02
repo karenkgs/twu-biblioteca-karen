@@ -15,7 +15,7 @@ public class RentableTest {
 
     @Test
     public void testRentableIsAvailableToString(){
-        assertThat(rentable.isAvailableToString(), equalTo(StringConstants.PRODUCT_IS_AVAILABLE));
+        assertThat(rentable.isAvailableToString(), equalTo(StringConstants.RENTABLE_IS_AVAILABLE));
 
     }
 

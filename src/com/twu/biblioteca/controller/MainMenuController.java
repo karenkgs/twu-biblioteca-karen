@@ -1,28 +1,33 @@
 package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.factory.RentableFactory;
-import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.constants.StringConstants;
 import com.twu.biblioteca.model.MainMenuOption;
-import com.twu.biblioteca.model.Movie;
+import com.twu.biblioteca.model.Rentable;
 import com.twu.biblioteca.repository.BookRepository;
 import com.twu.biblioteca.repository.MovieRepository;
-import com.twu.biblioteca.view.BookList;
 import com.twu.biblioteca.view.ConsolePrinter;
 import com.twu.biblioteca.view.ConsoleReader;
-import com.twu.biblioteca.view.MovieList;
+import com.twu.biblioteca.view.RentableList;
 
 import java.util.List;
 
 public class MainMenuController {
 
-    private ConsoleReader consoleReader;
-    private RentableCheckout rentableCheckout;
-    private RentableReturn rentableReturn;
-    private BookRepository bookRepository;
-    private MovieRepository movieRepository;
+    final private ConsoleReader consoleReader;
+    final private ConsolePrinter consolePrinter;
+    final private RentableCheckout rentableCheckout;
+    final private RentableReturn rentableReturn;
+    final private BookRepository bookRepository;
+    final private MovieRepository movieRepository;
 
-    public MainMenuController(ConsoleReader consoleReader, RentableCheckout rentableCheckout, RentableReturn rentableReturn, BookRepository bookRepository, MovieRepository movieRepository) {
+    public MainMenuController(ConsoleReader consoleReader,
+                              ConsolePrinter consolePrinter,
+                              RentableCheckout rentableCheckout,
+                              RentableReturn rentableReturn,
+                              BookRepository bookRepository,
+                              MovieRepository movieRepository) {
         this.consoleReader = consoleReader;
+        this.consolePrinter = consolePrinter;
         this.rentableCheckout = rentableCheckout;
         this.rentableReturn = rentableReturn;
         this.bookRepository = bookRepository;
@@ -34,125 +39,129 @@ public class MainMenuController {
         return selectedOption;
     }
 
-    public boolean executeActionForOption(MainMenuOption selectedMainMenuOption) {
+    public void executeActionForOption(final MainMenuOption selectedMainMenuOption) {
         switch (selectedMainMenuOption){
             case QUIT_MENU:
-                return quitMenu();
+                quitMenu();
+                break;
             case LIST_BOOKS:
-                return listBooks();
+                listBooks();
+                break;
             case CHECKOUT_BOOK:
-                return checkoutBook();
+                checkoutBook();
+                break;
             case RETURN_BOOK:
-                return returnBook();
+                returnBook();
+                break;
             case BOOK_DETAILS:
-                return detailBook();
+                detailBook();
+                break;
             case LIST_MOVIES:
-                return listMovies();
+                listMovies();
+                break;
             case CHECKOUT_MOVIE:
-                return checkoutMovie();
+                checkoutMovie();
+                break;
             case RETURN_MOVIE:
-                return returnMovie();
-            default:
-                return false;
+                returnMovie();
+                break;
+            case MOVIE_DETAILS:
+                detailMovie();
+                break;
         }
-    }
-
-    private boolean returnMovie() {
-
-        String name = consoleReader.readUserInput();
-        Movie movieToReturn = movieRepository.searchMovieByName(name);
-
-        Movie returnedMovie = (Movie) rentableReturn.returnRentable(movieToReturn);
-
-        return !returnedMovie.isAvailable();
-    }
-
-
-    private boolean checkoutMovie() {
-
-        String movieName = consoleReader.readUserInput();
-        Movie movieToCheckout = movieRepository.searchMovieByName(movieName);
-
-        Movie checkedOutMovie = (Movie)rentableCheckout.checkoutRentable(movieToCheckout);
-
-        return !checkedOutMovie.isAvailable();
-    }
-
-    private boolean listMovies() {
-        final MovieList movieList = new MovieList(RentableFactory.movies());
-        final List<String> outputMovieList = movieList.namePlusIsAvailableList();
-
-        if(outputMovieList.size() > 0){
-            final ConsolePrinter consolePrinter = new ConsolePrinter();
-
-            for (final String movieLine: movieList.namePlusIsAvailableList()){
-                consolePrinter.printToConsoleWithLineBreak(movieLine);
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-
-    private boolean quitMenu(){
-        return true;
-    }
-
-    private boolean listBooks(){
-        final BookList bookList = new BookList(RentableFactory.books());
-        final List<String> outputBookList = bookList.titlePlusIsAvailableList();
-
-        if(outputBookList.size() > 0){
-            final ConsolePrinter consolePrinter = new ConsolePrinter();
-
-            for (final String bookLine: bookList.titlePlusIsAvailableList()){
-                consolePrinter.printToConsoleWithLineBreak(bookLine);
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-
-    private boolean checkoutBook() {
-
-        String bookTitle = consoleReader.readUserInput();
-        Book bookToCheckout = bookRepository.searchBookByTitle(bookTitle);
-
-        Book checkedOutBook = (Book)rentableCheckout.checkoutRentable(bookToCheckout);
-
-        return !checkedOutBook.isAvailable();
-    }
-
-    private boolean returnBook() {
-
-        String bookTitle = consoleReader.readUserInput();
-        Book bookToReturn = bookRepository.searchBookByTitle(bookTitle);
-
-        Book returnedBook = (Book)rentableReturn.returnRentable(bookToReturn);
-
-        return !returnedBook.isAvailable();
-    }
-
-    private boolean detailBook() {
-
-        String bookTitle = consoleReader.readUserInput();
-        Book bookToDetail = bookRepository.searchBookByTitle(bookTitle);
-
-        ConsolePrinter consolePrinter = new ConsolePrinter();
-        consolePrinter.printToConsole(bookToDetail.toString());
-
-        return true;
     }
 
     public void listMenu(){
-        List<String> mainMenuList = MainMenuOption.valuesList();
-        ConsolePrinter consolePrinter = new ConsolePrinter();
+        final List<String> mainMenuList = MainMenuOption.valuesList();
         for(String menuOptionString: mainMenuList){
             consolePrinter.printToConsoleWithLineBreak(menuOptionString);
         }
     }
 
+    private void quitMenu(){
+        consolePrinter.printToConsoleWithLineBreak(StringConstants.QUIT);
+    }
+
+    private void returnBook() {
+        consolePrinter.printToConsoleWithLineBreak(StringConstants.ASK_FOR_TITLE);
+        if (returnRentable(searchBook())){
+            consolePrinter.printToConsoleWithLineBreak(StringConstants.SUCCESSFULL);
+        } else {
+            consolePrinter.printToConsoleWithLineBreak(StringConstants.UNSUCCESSFULL);
+        }
+    }
+
+    private void returnMovie() {
+        consolePrinter.printToConsoleWithLineBreak(StringConstants.ASK_FOR_TITLE);
+        if(returnRentable(searchMovie())){
+            consolePrinter.printToConsoleWithLineBreak(StringConstants.SUCCESSFULL);
+        } else {
+            consolePrinter.printToConsoleWithLineBreak(StringConstants.UNSUCCESSFULL);
+        }
+    }
+
+    private boolean returnRentable(Rentable rentableToReturn) {
+        final Rentable returnedRentable = rentableReturn.returnRentable(rentableToReturn);
+        return !returnedRentable.isAvailable();
+    }
+
+    private Rentable searchBook() {
+        final String bookTitle = consoleReader.readUserInput();
+        return bookRepository.searchBookByTitle(bookTitle);
+    }
+
+    private Rentable searchMovie() {
+        final String name = consoleReader.readUserInput();
+        return movieRepository.searchMovieByName(name);
+    }
+
+    private boolean listMovies() {
+        return (listRentable(new RentableList(MovieRepository.movieList)));
+    }
+
+    private boolean listBooks(){
+        return (listRentable(new RentableList(BookRepository.bookList)));
+    }
+
+    private boolean listRentable(RentableList rentableList) {
+        final List<String> outputRentableList = rentableList.titlePlusIsAvailableList();
+
+        if(outputRentableList.size() > 0){
+
+            for (final String rentableLine: rentableList.titlePlusIsAvailableList()){
+                consolePrinter.printToConsoleWithLineBreak(rentableLine);
+            }
+
+            return true;
+        }
+        return false;
+    }
+
+
+    private boolean checkoutBook() {
+        consolePrinter.printToConsoleWithLineBreak(StringConstants.ASK_FOR_TITLE);
+        return checkoutRentable(searchBook());
+    }
+
+    private boolean checkoutMovie() {
+        consolePrinter.printToConsoleWithLineBreak(StringConstants.ASK_FOR_TITLE);
+        return checkoutRentable(searchMovie());
+    }
+
+    private boolean checkoutRentable(Rentable rentableToCheckout) {
+        final Rentable checkedOutRentable = rentableCheckout.checkoutRentable(rentableToCheckout);
+        return !checkedOutRentable.isAvailable();
+    }
+
+    private void detailBook() {
+        detailRentable(searchBook());
+    }
+
+    private void detailMovie() {
+        detailRentable(searchMovie());
+    }
+
+    private void detailRentable(Rentable rentableToDetail) {
+        consolePrinter.printToConsole(rentableToDetail.toString());
+    }
 }

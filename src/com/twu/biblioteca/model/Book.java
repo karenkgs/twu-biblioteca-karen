@@ -1,5 +1,4 @@
 package com.twu.biblioteca.model;
-import com.sun.org.apache.regexp.internal.RE;
 import com.twu.biblioteca.constants.StringConstants;
 
 import java.time.Year;
@@ -54,12 +53,26 @@ public class Book implements Rentable {
                              getTitle(),
                              getAuthor(),
                              getYearPublished(),
-                             isAvailable() ? StringConstants.PRODUCT_IS_AVAILABLE : StringConstants.PRODUCT_IS_NOT_AVAILABLE
+                             isAvailable() ? StringConstants.RENTABLE_IS_AVAILABLE : StringConstants.RENTABLE_IS_NOT_AVAILABLE
         );
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (getClass() == obj.getClass()){
+            return getId() == ((Book)obj).getId();
+        }
+
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return getId().hashCode();
+    }
+
+    @Override
     public String isAvailableToString() {
-        return isAvailable() ? StringConstants.PRODUCT_IS_AVAILABLE : StringConstants.PRODUCT_IS_NOT_AVAILABLE;
+        return isAvailable() ? StringConstants.RENTABLE_IS_AVAILABLE : StringConstants.RENTABLE_IS_NOT_AVAILABLE;
     }
 }

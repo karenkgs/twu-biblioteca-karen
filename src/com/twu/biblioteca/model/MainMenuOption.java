@@ -14,7 +14,8 @@ public enum MainMenuOption {
     BOOK_DETAILS(4, "Book Details"),
     LIST_MOVIES(5, "List Movies"),
     CHECKOUT_MOVIE(6, "Checkout Movie"),
-    RETURN_MOVIE(7, "Return Movie");
+    RETURN_MOVIE(7, "Return Movie"),
+    MOVIE_DETAILS(8, "Movie Details");
 
     final private int key;
     final private String value;

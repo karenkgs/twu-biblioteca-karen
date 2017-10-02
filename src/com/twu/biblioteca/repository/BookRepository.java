@@ -2,6 +2,7 @@ package com.twu.biblioteca.repository;
 
 import com.twu.biblioteca.factory.RentableFactory;
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.Rentable;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,9 +10,9 @@ import java.util.UUID;
 
 public class BookRepository {
 
-    public static List<Book> bookList;
+    public static List<Rentable> bookList;
 
-    public BookRepository(List<Book> bookList){
+    public BookRepository(List<Rentable> bookList){
         this.bookList = bookList;
     }
 
@@ -19,23 +20,12 @@ public class BookRepository {
         this(RentableFactory.books());
     }
 
-    public Book searchBookByTitle(final String title) {
-        final Optional<Book> bookWithTitle = bookList.stream()
-                                                     .filter(book -> book.getTitle().equals(title.trim()))
-                                                     .findAny();
+    public Rentable searchBookByTitle(final String title) {
+        final Optional<Rentable> bookWithTitle = bookList.stream()
+                                                         .filter(book -> book.getTitle().equals(title.trim()))
+                                                         .findAny();
 
         return bookWithTitle.orElse(null);
     }
 
-    private List<Book> booksFromFactory() {
-        return RentableFactory.books();
-    }
-
-    public Book searchBookByUUID(final UUID id) {
-        final Optional<Book> bookWithID = bookList.stream()
-                                                   .filter(book -> book.getId().equals(id))
-                                                   .findAny();
-
-        return bookWithID.orElse(null);
-    }
 }

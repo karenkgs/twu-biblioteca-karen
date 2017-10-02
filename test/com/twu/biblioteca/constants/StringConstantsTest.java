@@ -7,7 +7,7 @@ import static org.junit.Assert.assertNotNull;
 public class StringConstantsTest {
     @Test
     public void testIfWelcomeMessageExists(){
-        String welcomeMessage = StringConstants.WELCOME_MESSAGE;
+        String welcomeMessage = StringConstants.WELCOME;
 
         assertNotNull(welcomeMessage);
     }
