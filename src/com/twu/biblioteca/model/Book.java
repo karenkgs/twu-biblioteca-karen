@@ -1,10 +1,11 @@
 package com.twu.biblioteca.model;
+import com.sun.org.apache.regexp.internal.RE;
 import com.twu.biblioteca.constants.StringConstants;
 
 import java.time.Year;
 import java.util.UUID;
 
-public class Book {
+public class Book implements Rentable {
     private final UUID id;
     private boolean isAvailable;
     private final String title;
@@ -55,5 +56,10 @@ public class Book {
                              getYearPublished(),
                              isAvailable() ? StringConstants.PRODUCT_IS_AVAILABLE : StringConstants.PRODUCT_IS_NOT_AVAILABLE
         );
+    }
+
+    @Override
+    public String isAvailableToString() {
+        return isAvailable() ? StringConstants.PRODUCT_IS_AVAILABLE : StringConstants.PRODUCT_IS_NOT_AVAILABLE;
     }
 }

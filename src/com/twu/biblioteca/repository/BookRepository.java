@@ -1,6 +1,6 @@
 package com.twu.biblioteca.repository;
 
-import com.twu.biblioteca.factory.BookFactory;
+import com.twu.biblioteca.factory.RentableFactory;
 import com.twu.biblioteca.model.Book;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class BookRepository {
     }
 
     public BookRepository(){
-        this(BookFactory.books());
+        this(RentableFactory.books());
     }
 
     public Book searchBookByTitle(final String title) {
@@ -28,7 +28,7 @@ public class BookRepository {
     }
 
     private List<Book> booksFromFactory() {
-        return BookFactory.books();
+        return RentableFactory.books();
     }
 
     public Book searchBookByUUID(final UUID id) {

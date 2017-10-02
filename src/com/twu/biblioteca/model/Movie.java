@@ -1,8 +1,11 @@
 package com.twu.biblioteca.model;
 
+import com.twu.biblioteca.constants.StringConstants;
+
 import java.time.Year;
 
-public class Movie {
+public class Movie implements Rentable {
+
     private String name;
     private Year year;
     private String director;
@@ -54,4 +57,8 @@ public class Movie {
                              getRate());
     }
 
+    @Override
+    public String isAvailableToString() {
+        return isAvailable() ? StringConstants.PRODUCT_IS_AVAILABLE : StringConstants.PRODUCT_IS_NOT_AVAILABLE;
+    }
 }

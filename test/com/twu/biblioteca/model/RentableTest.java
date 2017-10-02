@@ -10,10 +10,13 @@ import static org.junit.Assert.assertThat;
 
 public class RentableTest {
 
+
+    Rentable rentable = new Book("", true, "", Year.now());
+
     @Test
-    public void testProductIsAvailableToString(){
-        Rentable rentable;// = new Rentable("", Year.now(), true);
-        //assertThat(rentable.isAvailableToString(), equalTo(StringConstants.PRODUCT_IS_AVAILABLE));
+    public void testRentableIsAvailableToString(){
+        assertThat(rentable.isAvailableToString(), equalTo(StringConstants.PRODUCT_IS_AVAILABLE));
 
     }
+
 }

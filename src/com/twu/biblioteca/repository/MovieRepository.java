@@ -1,6 +1,6 @@
 package com.twu.biblioteca.repository;
 
-import com.twu.biblioteca.factory.MovieFactory;
+import com.twu.biblioteca.factory.RentableFactory;
 import com.twu.biblioteca.model.Movie;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public class MovieRepository {
     }
 
     public MovieRepository(){
-        this(MovieFactory.movies());
+        this(RentableFactory.movies());
     }
 
     public Movie searchMovieByName(final String name) {
@@ -26,7 +26,7 @@ public class MovieRepository {
     }
 
     private List<Movie> moviesFromFactory() {
-        return MovieFactory.movies();
+        return RentableFactory.movies();
     }
 
 }
