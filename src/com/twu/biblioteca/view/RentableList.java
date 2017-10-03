@@ -11,7 +11,7 @@ public class RentableList {
 
     List<Rentable> rentableList;
 
-    public RentableList(List<Rentable> rentableList){
+    public RentableList(List<Rentable> rentableList) {
         this.rentableList = rentableList;
     }
 
@@ -22,7 +22,7 @@ public class RentableList {
     public List<String> titlePlusIsAvailableList() {
         List<String> titlePlusIsAvailableList = new ArrayList<>();
 
-        for(final Rentable rentable: rentableList){
+        for(final Rentable rentable: rentableList) {
             final String formattedTitlePlusIsAvailable = String.format("%s - %s", rentable.getTitle(), rentable.isAvailableToString());
             titlePlusIsAvailableList.add(formattedTitlePlusIsAvailable);
         }

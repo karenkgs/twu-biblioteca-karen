@@ -17,7 +17,7 @@ public class MainMenuOptionTest {
     }
 
     @Test
-    public void testMenuOptionForKey(){
+    public void testMenuOptionForKey() {
 
         assertThat(MainMenuOption.getOptionForKey(1), equalTo(MainMenuOption.LIST_BOOKS));
     }

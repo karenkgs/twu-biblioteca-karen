@@ -6,7 +6,7 @@ public class ConsoleReader {
 
     private final Scanner scanner;
 
-    public ConsoleReader(){
+    public ConsoleReader() {
         scanner = new Scanner(System.in);
     }
 

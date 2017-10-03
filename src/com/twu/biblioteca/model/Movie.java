@@ -70,7 +70,7 @@ public class Movie implements Rentable {
 
     @Override
     public boolean equals(Object obj) {
-        if (getClass() == obj.getClass()){
+        if (getClass() == obj.getClass()) {
             return getId() == ((Book)obj).getId();
         }
 

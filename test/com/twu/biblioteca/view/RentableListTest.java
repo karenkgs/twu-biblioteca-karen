@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
 public class RentableListTest {
 
     @Test
-    public void testRentableBookList(){
+    public void testRentableBookList() {
         final RentableList bookList = new RentableList(RentableFactory.books());
 
         assertThat(bookList.titleList().get(0), equalTo("TDD By Example"));

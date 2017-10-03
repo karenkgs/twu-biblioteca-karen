@@ -1,5 +1,6 @@
 package com.twu.biblioteca.model;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -7,17 +8,22 @@ import static org.junit.Assert.assertThat;
 
 public class UserTest {
 
+    private User user;
 
-    private final User user = new User("Karen", "karen@k.com", "My Address",
-                                       9999999, 1234567, "123");
+    @Before
+    public void setUp() throws Exception {
+        user = new User("Karen", "karen@k.com", "My Address",
+                        9999999, 1234567, "123");
+
+    }
 
     @Test
-    public void testUserConstructor(){
+    public void testUserConstructor() {
         assertThat(user.getName(), equalTo("Karen"));
     }
 
     @Test
-    public void testUserInformationToDisplay(){
+    public void testUserInformationToDisplay() {
         assertThat(user.toString(), equalTo(String.format("Name: Karen%n" +
                                                           "Email: karen@k.com%n" +
                                                           "Address: My Address%n" +
@@ -25,7 +31,7 @@ public class UserTest {
     }
 
     @Test
-    public void testUserLibraryNumberFormat(){
+    public void testUserLibraryNumberFormat() {
         assertThat(user.getLibraryNumber(), equalTo("123-4567"));
     }
 }

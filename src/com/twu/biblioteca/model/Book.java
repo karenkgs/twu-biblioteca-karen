@@ -32,7 +32,7 @@ public class Book implements Rentable {
         return author;
     }
 
-    public String getYearPublished(){
+    public String getYearPublished() {
         return yearPublished.toString();
     }
 
@@ -59,7 +59,7 @@ public class Book implements Rentable {
 
     @Override
     public boolean equals(Object obj) {
-        if (getClass() == obj.getClass()){
+        if (getClass() == obj.getClass()) {
             return getId() == ((Book)obj).getId();
         }
 

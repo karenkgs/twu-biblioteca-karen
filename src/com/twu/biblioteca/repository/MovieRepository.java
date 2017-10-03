@@ -9,11 +9,11 @@ import java.util.Optional;
 public class MovieRepository {
     public static List<Rentable> movieList;
 
-    public MovieRepository(List<Rentable> movieList){
+    public MovieRepository(List<Rentable> movieList) {
         this.movieList = movieList;
     }
 
-    public MovieRepository(){
+    public MovieRepository() {
         this(RentableFactory.movies());
     }
 

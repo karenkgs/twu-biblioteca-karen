@@ -15,7 +15,8 @@ public enum MainMenuOption {
     LIST_MOVIES(5, "List Movies"),
     CHECKOUT_MOVIE(6, "Checkout Movie"),
     RETURN_MOVIE(7, "Return Movie"),
-    MOVIE_DETAILS(8, "Movie Details");
+    MOVIE_DETAILS(8, "Movie Details"),
+    USER_DETAILS(9, "Show my User Account Details");
 
     final private int key;
     final private String value;
@@ -33,11 +34,11 @@ public enum MainMenuOption {
         return String.format("%d - %s", getKey(), value);
     }
 
-    private String getValue(MainMenuOption mainMenuOption){
+    private String getValue(MainMenuOption mainMenuOption) {
         return mainMenuOption.getValue();
     }
 
-    public static List<String> valuesList(){
+    public static List<String> valuesList() {
         return Arrays.stream(values()).map(option -> option.getValue(option)).collect(Collectors.toList());
     }
 

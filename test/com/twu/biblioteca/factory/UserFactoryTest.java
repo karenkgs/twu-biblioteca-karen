@@ -10,7 +10,7 @@ import static org.junit.Assert.assertNotNull;
 public class UserFactoryTest {
 
     @Test
-    public void testUserFactory(){
+    public void testUserFactory() {
         List<User> usersList = UserFactory.users();
 
         assertNotNull(usersList);

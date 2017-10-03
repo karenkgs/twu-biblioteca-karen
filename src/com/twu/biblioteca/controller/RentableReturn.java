@@ -5,8 +5,7 @@ import com.twu.biblioteca.model.Rentable;
 public class RentableReturn {
 
     public Rentable returnRentable(Rentable rentableToReturn) {
-
-        if(rentableToReturn != null && !rentableToReturn.isAvailable()){
+        if(rentableToReturn != null && !rentableToReturn.isAvailable()) {
             rentableToReturn.setIsAvailable(true);
             return rentableToReturn;
         }

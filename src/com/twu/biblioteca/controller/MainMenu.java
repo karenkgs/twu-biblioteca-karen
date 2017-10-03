@@ -11,7 +11,7 @@ import com.twu.biblioteca.view.RentableList;
 
 import java.util.List;
 
-public class MainMenuController {
+public class MainMenu {
 
     final private ConsoleReader consoleReader;
     final private ConsolePrinter consolePrinter;
@@ -20,12 +20,12 @@ public class MainMenuController {
     final private BookRepository bookRepository;
     final private MovieRepository movieRepository;
 
-    public MainMenuController(ConsoleReader consoleReader,
-                              ConsolePrinter consolePrinter,
-                              RentableCheckout rentableCheckout,
-                              RentableReturn rentableReturn,
-                              BookRepository bookRepository,
-                              MovieRepository movieRepository) {
+    public MainMenu(ConsoleReader consoleReader,
+                    ConsolePrinter consolePrinter,
+                    RentableCheckout rentableCheckout,
+                    RentableReturn rentableReturn,
+                    BookRepository bookRepository,
+                    MovieRepository movieRepository) {
         this.consoleReader = consoleReader;
         this.consolePrinter = consolePrinter;
         this.rentableCheckout = rentableCheckout;
@@ -40,7 +40,7 @@ public class MainMenuController {
     }
 
     public void executeActionForOption(final MainMenuOption selectedMainMenuOption) {
-        switch (selectedMainMenuOption){
+        switch (selectedMainMenuOption) {
             case QUIT_MENU:
                 quitMenu();
                 break;
@@ -68,23 +68,30 @@ public class MainMenuController {
             case MOVIE_DETAILS:
                 detailMovie();
                 break;
+            case USER_DETAILS:
+                detailUser();
+                break;
         }
     }
 
-    public void listMenu(){
+    private void detailUser() {
+        consolePrinter.printToConsoleWithLineBreak(Login.loggedInUser.toString());
+    }
+
+    public void listMenu() {
         final List<String> mainMenuList = MainMenuOption.valuesList();
-        for(String menuOptionString: mainMenuList){
+        for(String menuOptionString: mainMenuList) {
             consolePrinter.printToConsoleWithLineBreak(menuOptionString);
         }
     }
 
-    private void quitMenu(){
+    private void quitMenu() {
         consolePrinter.printToConsoleWithLineBreak(StringConstants.QUIT);
     }
 
     private void returnBook() {
         consolePrinter.printToConsoleWithLineBreak(StringConstants.ASK_FOR_TITLE);
-        if (returnRentable(searchBook())){
+        if (returnRentable(searchBook())) {
             consolePrinter.printToConsoleWithLineBreak(StringConstants.SUCCESSFULL);
         } else {
             consolePrinter.printToConsoleWithLineBreak(StringConstants.UNSUCCESSFULL);
@@ -93,7 +100,7 @@ public class MainMenuController {
 
     private void returnMovie() {
         consolePrinter.printToConsoleWithLineBreak(StringConstants.ASK_FOR_TITLE);
-        if(returnRentable(searchMovie())){
+        if(returnRentable(searchMovie())) {
             consolePrinter.printToConsoleWithLineBreak(StringConstants.SUCCESSFULL);
         } else {
             consolePrinter.printToConsoleWithLineBreak(StringConstants.UNSUCCESSFULL);
@@ -119,16 +126,16 @@ public class MainMenuController {
         return (listRentable(new RentableList(MovieRepository.movieList)));
     }
 
-    private boolean listBooks(){
+    private boolean listBooks() {
         return (listRentable(new RentableList(BookRepository.bookList)));
     }
 
     private boolean listRentable(RentableList rentableList) {
         final List<String> outputRentableList = rentableList.titlePlusIsAvailableList();
 
-        if(outputRentableList.size() > 0){
+        if(outputRentableList.size() > 0) {
 
-            for (final String rentableLine: rentableList.titlePlusIsAvailableList()){
+            for (final String rentableLine: rentableList.titlePlusIsAvailableList()) {
                 consolePrinter.printToConsoleWithLineBreak(rentableLine);
             }
 
