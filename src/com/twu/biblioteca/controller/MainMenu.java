@@ -87,6 +87,7 @@ public class MainMenu {
 
     private void quitMenu() {
         consolePrinter.printToConsoleWithLineBreak(StringConstants.QUIT);
+        Login.loggedInUser = null;
     }
 
     private void returnBook() {
