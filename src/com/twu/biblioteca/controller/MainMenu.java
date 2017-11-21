@@ -1,15 +1,15 @@
 package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.constants.StringConstants;
+import com.twu.biblioteca.factory.MainMenuOptionFactory;
 import com.twu.biblioteca.model.MainMenuOption;
-import com.twu.biblioteca.model.Rentable;
+import com.twu.biblioteca.model.interfaces.MainMenuAction;
 import com.twu.biblioteca.repository.BookRepository;
 import com.twu.biblioteca.repository.MovieRepository;
 import com.twu.biblioteca.view.ConsolePrinter;
 import com.twu.biblioteca.view.ConsoleReader;
-import com.twu.biblioteca.view.RentableList;
 
 import java.util.List;
+import java.util.Optional;
 
 public class MainMenu {
 
@@ -40,136 +40,24 @@ public class MainMenu {
     }
 
     public void executeActionForOption(final MainMenuOption selectedMainMenuOption) {
-        switch (selectedMainMenuOption) {
-            case QUIT_MENU:
-                quitMenu();
-                break;
-            case LIST_BOOKS:
-                listBooks();
-                break;
-            case CHECKOUT_BOOK:
-                checkoutBook();
-                break;
-            case RETURN_BOOK:
-                returnBook();
-                break;
-            case BOOK_DETAILS:
-                detailBook();
-                break;
-            case LIST_MOVIES:
-                listMovies();
-                break;
-            case CHECKOUT_MOVIE:
-                checkoutMovie();
-                break;
-            case RETURN_MOVIE:
-                returnMovie();
-                break;
-            case MOVIE_DETAILS:
-                detailMovie();
-                break;
-            case USER_DETAILS:
-                detailUser();
-                break;
-        }
-    }
+        Optional<MainMenuAction> optionalMainMenuAction = (MainMenuOptionFactory.mainMenuActions()
+                .entrySet()
+                .stream()
+                .filter(map -> map.getKey() == selectedMainMenuOption.getKey())
+                .map(map -> map.getValue())
+                .findFirst());
 
-    private void detailUser() {
-        consolePrinter.printToConsoleWithLineBreak(Login.loggedInUser.toString());
+        MainMenuAction mainMenuAction = optionalMainMenuAction.orElse(null);
+        if (mainMenuAction != null) {
+            mainMenuAction.performAction();
+        }
+
     }
 
     public void listMenu() {
         final List<String> mainMenuList = MainMenuOption.valuesList();
-        for(String menuOptionString: mainMenuList) {
+        for (String menuOptionString : mainMenuList) {
             consolePrinter.printToConsoleWithLineBreak(menuOptionString);
         }
-    }
-
-    private void quitMenu() {
-        consolePrinter.printToConsoleWithLineBreak(StringConstants.QUIT);
-        Login.loggedInUser = null;
-    }
-
-    private void returnBook() {
-        consolePrinter.printToConsoleWithLineBreak(StringConstants.ASK_FOR_TITLE);
-        if (returnRentable(searchBook())) {
-            consolePrinter.printToConsoleWithLineBreak(StringConstants.SUCCESSFULL);
-        } else {
-            consolePrinter.printToConsoleWithLineBreak(StringConstants.UNSUCCESSFULL);
-        }
-    }
-
-    private void returnMovie() {
-        consolePrinter.printToConsoleWithLineBreak(StringConstants.ASK_FOR_TITLE);
-        if(returnRentable(searchMovie())) {
-            consolePrinter.printToConsoleWithLineBreak(StringConstants.SUCCESSFULL);
-        } else {
-            consolePrinter.printToConsoleWithLineBreak(StringConstants.UNSUCCESSFULL);
-        }
-    }
-
-    private boolean returnRentable(Rentable rentableToReturn) {
-        final Rentable returnedRentable = rentableReturn.returnRentable(rentableToReturn);
-        return !returnedRentable.isAvailable();
-    }
-
-    private Rentable searchBook() {
-        final String bookTitle = consoleReader.readUserInput();
-        return bookRepository.searchBookByTitle(bookTitle);
-    }
-
-    private Rentable searchMovie() {
-        final String name = consoleReader.readUserInput();
-        return movieRepository.searchMovieByName(name);
-    }
-
-    private boolean listMovies() {
-        return (listRentable(new RentableList(MovieRepository.movieList)));
-    }
-
-    private boolean listBooks() {
-        return (listRentable(new RentableList(BookRepository.bookList)));
-    }
-
-    private boolean listRentable(RentableList rentableList) {
-        final List<String> outputRentableList = rentableList.titlePlusIsAvailableList();
-
-        if(outputRentableList.size() > 0) {
-
-            for (final String rentableLine: rentableList.titlePlusIsAvailableList()) {
-                consolePrinter.printToConsoleWithLineBreak(rentableLine);
-            }
-
-            return true;
-        }
-        return false;
-    }
-
-
-    private boolean checkoutBook() {
-        consolePrinter.printToConsoleWithLineBreak(StringConstants.ASK_FOR_TITLE);
-        return checkoutRentable(searchBook());
-    }
-
-    private boolean checkoutMovie() {
-        consolePrinter.printToConsoleWithLineBreak(StringConstants.ASK_FOR_TITLE);
-        return checkoutRentable(searchMovie());
-    }
-
-    private boolean checkoutRentable(Rentable rentableToCheckout) {
-        final Rentable checkedOutRentable = rentableCheckout.checkoutRentable(rentableToCheckout);
-        return !checkedOutRentable.isAvailable();
-    }
-
-    private void detailBook() {
-        detailRentable(searchBook());
-    }
-
-    private void detailMovie() {
-        detailRentable(searchMovie());
-    }
-
-    private void detailRentable(Rentable rentableToDetail) {
-        consolePrinter.printToConsole(rentableToDetail.toString());
     }
 }

@@ -1,6 +1,6 @@
 package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.model.Rentable;
+import com.twu.biblioteca.model.interfaces.Rentable;
 
 public class RentableCheckout {
 

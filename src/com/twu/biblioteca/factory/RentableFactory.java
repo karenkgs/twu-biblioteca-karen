@@ -2,13 +2,12 @@ package com.twu.biblioteca.factory;
 
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Movie;
-import com.twu.biblioteca.model.Rentable;
+import com.twu.biblioteca.model.interfaces.Rentable;
 
 import java.time.Year;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
 public class RentableFactory {
 

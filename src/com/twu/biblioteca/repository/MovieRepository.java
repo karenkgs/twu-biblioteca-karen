@@ -1,7 +1,7 @@
 package com.twu.biblioteca.repository;
 
 import com.twu.biblioteca.factory.RentableFactory;
-import com.twu.biblioteca.model.Rentable;
+import com.twu.biblioteca.model.interfaces.Rentable;
 
 import java.util.List;
 import java.util.Optional;

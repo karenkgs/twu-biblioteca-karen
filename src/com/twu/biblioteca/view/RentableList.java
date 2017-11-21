@@ -1,6 +1,6 @@
 package com.twu.biblioteca.view;
 
-import com.twu.biblioteca.model.Rentable;
+import com.twu.biblioteca.model.interfaces.Rentable;
 
 import java.util.ArrayList;
 import java.util.List;

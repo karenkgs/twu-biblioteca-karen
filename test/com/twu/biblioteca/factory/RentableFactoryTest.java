@@ -1,6 +1,6 @@
 package com.twu.biblioteca.factory;
 
-import com.twu.biblioteca.model.Rentable;
+import com.twu.biblioteca.model.interfaces.Rentable;
 import org.junit.Test;
 
 import java.util.List;

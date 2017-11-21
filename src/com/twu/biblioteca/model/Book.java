@@ -1,5 +1,6 @@
 package com.twu.biblioteca.model;
 import com.twu.biblioteca.constants.StringConstants;
+import com.twu.biblioteca.model.interfaces.Rentable;
 
 import java.time.Year;
 import java.util.UUID;

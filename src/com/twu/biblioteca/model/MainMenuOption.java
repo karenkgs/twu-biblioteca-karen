@@ -30,6 +30,10 @@ public enum MainMenuOption {
         return key;
     }
 
+    public int getKey(MainMenuOption mainMenuOption) {
+        return mainMenuOption.getKey();
+    }
+
     public String getValue() {
         return String.format("%d - %s", getKey(), value);
     }
@@ -40,6 +44,11 @@ public enum MainMenuOption {
 
     public static List<String> valuesList() {
         return Arrays.stream(values()).map(option -> option.getValue(option)).collect(Collectors.toList());
+    }
+
+
+    public static List<Integer> keysList() {
+        return Arrays.stream(values()).map(option -> option.getKey(option)).collect(Collectors.toList());
     }
 
     public static MainMenuOption getOptionForKey(final int key) {
